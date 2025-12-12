@@ -14,6 +14,9 @@ A microservice for storing and managing phone-address pairs using FastAPI and Re
 ### 1. Get Address by Phone
 **GET** `/phones/{phone}`
 
+<img width="745" height="559" alt="image" src="https://github.com/user-attachments/assets/d2ced8b7-6b42-4d0f-a20a-da0bac82723e" />
+
+
 Retrieves the address associated with the specified phone number.
 
 - **Success (200)**: Returns the phone-address pair in JSON format
@@ -26,6 +29,9 @@ curl http://localhost:8000/phones/+1234567890
 
 ### 2. Create Phone-Address Pair
 **POST** `/phones`
+
+<img width="745" height="559" alt="image" src="https://github.com/user-attachments/assets/004999b1-7b39-46b9-91cf-e22c8260459e" />
+
 
 Creates a new phone-address pair in the system.
 
@@ -50,6 +56,9 @@ curl -X POST http://localhost:8000/phones \
 ### 3. Update Address
 **PUT** `/phones/{phone}`
 
+<img width="750" height="589" alt="image" src="https://github.com/user-attachments/assets/db3d1b65-b32b-4562-83b9-c077bf86df99" />
+
+
 Updates the address for an existing phone number.
 
 **Request Body:**
@@ -71,6 +80,10 @@ curl -X PUT http://localhost:8000/phones/+1234567890 \
 
 ### 4. Delete Phone-Address Pair
 **DELETE** `/phones/{phone}`
+
+<img width="747" height="520" alt="image" src="https://github.com/user-attachments/assets/95b706eb-bbf3-49dc-bba6-e0804464be98" />
+<img width="740" height="540" alt="image" src="https://github.com/user-attachments/assets/6a965a88-89c7-478e-82e0-6fbfd9124361" />
+
 
 Removes a phone-address pair from the system.
 
