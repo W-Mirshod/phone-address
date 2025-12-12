@@ -11,13 +11,21 @@ services:
 
   api:
     build: .
+    container_name: phone-address-api
     ports:
       - "6077:8000"
     environment:
       - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
+    networks:
+      - default
+      - web
 
 volumes:
   redis_data:
+
+networks:
+  web:
+    external: true
 
