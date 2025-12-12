@@ -1,12 +1,38 @@
 import pytest
 from fastapi.testclient import TestClient
 from app.main import app
-import asyncio
+from app.deps import get_redis
+
+
+class FakeRedis:
+    def __init__(self):
+        self.store = {}
+
+    async def get(self, key):
+        return self.store.get(key)
+
+    async def set(self, key, value):
+        self.store[key] = value
+        return True
+
+    async def exists(self, key):
+        return 1 if key in self.store else 0
+
+    async def delete(self, key):
+        return 1 if self.store.pop(key, None) is not None else 0
 
 
 @pytest.fixture
-def client():
-    return TestClient(app)
+def fake_redis():
+    return FakeRedis()
+
+
+@pytest.fixture
+def client(fake_redis):
+    app.dependency_overrides[get_redis] = lambda: fake_redis
+    with TestClient(app) as test_client:
+        yield test_client
+    app.dependency_overrides.clear()
 
 
 def test_get_address_not_found(client):
